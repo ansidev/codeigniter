@@ -1,0 +1,42 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Post_model extends CI_Model
+{
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->database();
+	}
+
+	function get_all_posts()
+	{
+		$query = $this->db->get('posts');
+		return $query->result();
+	}
+
+	function get_post($id)
+	{
+		if(!empty($id))
+		{
+			$this->db->where('post_id', $id);
+			$query = $this->db->get('posts');
+			if($query->num_rows() !== 0)
+			{
+				return $query->result();
+			}
+		}
+		return FALSE;
+	}
+
+	function add($title, $content)
+	{
+		$data = array(
+			'post_title' => $title,
+			'post_content' => $content
+		);
+		$this->db->insert('posts', $data);
+	}
+}
+
+/* End of file post_model.php */
+/* Location: ./application/models/post_model.php */
