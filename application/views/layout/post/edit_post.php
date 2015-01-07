@@ -16,7 +16,7 @@
                     {
                         echo $this->session->flashdata('message');
                     }
-                    echo form_open('post/edit');
+                    echo form_open('post/edit/' . $post->post_id);
                 ?>
                     <input type="hidden" id="post_id" name="post_id" value="<?php echo $post->post_id; ?>">
                     <div class="form-group">

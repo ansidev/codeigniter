@@ -63,7 +63,9 @@ class Post extends CI_Controller {
 
 		if($id == null)
 		{
-			redirect('post/index');
+			throw new NullException("Post ID cannot null");
+			
+			// redirect('post/index');
 		}
 		else
 		{
@@ -83,9 +85,11 @@ class Post extends CI_Controller {
 				}
 				else
 				{
-					$this->post_model->update();
+					$title = $this->input->post('post_title');
+					$content = $this->input->post('post_content');					
+					$this->post_model->update($id, $title, $content);
 					$this->session->set_flashdata('message', 'Post has been updated!');
-					redirect('post/edit', $data);
+					redirect('post/index');
 				}
 			}		
 		}

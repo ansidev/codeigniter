@@ -47,13 +47,13 @@ class Post_model extends CI_Model
 		$this->db->insert('posts', $data);
 	}
 
-	function update()
+	function update($id, $title, $content)
 	{
 		$data = array(
-			'post_title' => $this->input->post('post_title'),
-			'post_content' => $this->input->post('post_content')
+			'post_title' => $title,
+			'post_content' => $content
 		);
-		$this->db->where('post_id', $this->input->post('post_id'));
+		$this->db->where('post_id', $id);
 		$this->db->update('posts', $data);
 	}
 }
