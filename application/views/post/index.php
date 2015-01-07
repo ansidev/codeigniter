@@ -13,6 +13,7 @@
 				</h1>
 				<h6>
 			  	Posted on <?php echo $post->post_date;?>
+			  	<!-- | Author: <?php //echo $post->post_author;?> -->
 				</h6>
 			  	<?php echo $post->post_content;?>
 			</div>

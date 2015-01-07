@@ -3,6 +3,9 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">
+                    <a href="<?php echo "/post"; ?>" class="btn btn-default">
+                        <span class="glyphicon glyphicon-chevron-left"></span> Go back
+                    </a>
                     <strong>Add post </strong>
                 </h3>
             </div>

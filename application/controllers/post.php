@@ -12,6 +12,14 @@ class Post extends CI_Controller {
 	function index()
 	{
 		$data['query'] = $this->post_model->get_all_posts();
+		// if(!empty($data['query']))
+		// {
+		// 	foreach ($data['query'] as $post) {
+
+		// 		$post['post_author'] = $this->post_model->get_author_fullname($post['post_author_id']);
+		// 	}
+		// }
+
 		$this->load->view('post/index', $data);
 	}
 
@@ -43,6 +51,44 @@ class Post extends CI_Controller {
 			// 	$post_id = $this->input->post('post_id');
 			// }
 		}		
+	}
+
+	function edit($id) {
+		$this->load->helper('form');
+		$this->load->library(array('form_validation', 'session'));
+
+		//Set validation rules
+		$this->form_validation->set_rules('post_title', 'Post title', 'required|xss_clean|min_length[5]|max_length[200]');
+		$this->form_validation->set_rules('post_content', 'Post content', 'required|xss_clean|min_length[5]');
+
+		if($id == null)
+		{
+			redirect('post/index');
+		}
+		else
+		{
+			$data['query'] = $this->post_model->get_post($id);
+			Console::log($data);
+
+			if($this->post_model->get_post($id))
+			{
+				foreach($this->post_model->get_post($id) as $post)
+				{
+					$data['post'] = $post;
+				}
+
+				if($this->form_validation->run() == FALSE)
+				{
+					$this->load->view('post/edit', $data);
+				}
+				else
+				{
+					$this->post_model->update();
+					$this->session->set_flashdata('message', 'Post has been updated!');
+					redirect('post/edit', $data);
+				}
+			}		
+		}
 	}
 
 	function add() {

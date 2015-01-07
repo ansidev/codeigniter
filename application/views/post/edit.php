@@ -3,8 +3,7 @@
     <div class="container">
       <?php $this->load->view('layout/site-brand'); ?>
       <?php
-        $action = "Add";
-        $this->load->view('layout/post/add_post');
+        $this->load->view('layout/post/edit_post');
       ?>
       <?php $this->load->view('layout/footer'); ?>
     </div> <!-- /container -->
