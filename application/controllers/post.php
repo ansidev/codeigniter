@@ -18,32 +18,31 @@ class Post extends CI_Controller {
 	function view($id) {
 		$data['query'] = $this->post_model->get_post($id);
 		$data['post_id'] = $id;
-		// $this->load->helper('form');
-		// $this->load->library(array('form_validation', 'session'));
+		// Console::log($data);
+		$this->load->helper('form');
+		$this->load->library(array('form_validation', 'session'));
 
 		//Set validation rules
+		// $this->form_validation->set_rules('commentor', 'Name', 'required');
+		// $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+		// $this->form_validation->set_rules('commentor', 'Comment', 'required');
 
 		if($this->post_model->get_post($id))
 		{
-			foreach($this->post_model->get_post($id) as row)
+			foreach($this->post_model->get_post($id) as $post)
 			{
-				$data['post_title'] = $row->post_title;
+				$data['post'] = $post;
 			}
 
 			// if($this->form_validation->run() == FALSE)
 			// {
-			// 	$this->load->view('post/view', $data);
+				$this->load->view('post/view', $data);
 			// }
 			// else
 			// {
 			// 	$post_id = $this->input->post('post_id');
 			// }
-		}
-		else
-		{
-			show_error_404();
-		}
-		
+		}		
 	}
 
 	function add() {

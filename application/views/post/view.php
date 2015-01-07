@@ -3,16 +3,16 @@
     <?php $this->load->view('layout/top-nav'); ?>
     <div class="container">
     	<div class="row">
-	  	<?php if($query):foreach($query as $post):?>
+	  	<?php if($query): foreach($query as $post):?>
 	  		<div class="col-md-12">
 				  <h1>
-				  	<?php echo $post_title;?>
+				  	<?php echo $post->post_title;?>
 					</h1>
 					<h6>
-				  	Posted on <?php // echo $post->post_date;?>
+				  	Posted on <?php echo $post->post_date;?>
 					</h6>
-			  	<?php // echo $post->post_content;?>
-				</div>
+			  	<?php echo $post->post_content;?>
+			</div>
 		  <?php endforeach; else:?>
 			  <div class="col-md-12">
 			  	<h1>No entry yet!</h1>
