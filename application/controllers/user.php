@@ -28,10 +28,10 @@ class User extends CI_Controller {
         }
         else {
             if($this->user_model->check_login($this->input->post('username'), $this->input->post('password')) === TRUE) {
-                $this->load->view('user/register_success');
+                redirect('user/index');
             }
             else {
-                $this->load->view('user/register');
+                $this->load->view('user/login');
             }
         }
     }
