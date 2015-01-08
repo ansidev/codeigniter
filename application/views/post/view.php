@@ -5,12 +5,13 @@
     	<div class="row">
 	  	<?php if($query): foreach($query as $post):?>
 	  		<div class="col-md-12">
-				  <h1>
-				  	<?php echo $post->post_title;?>
-					</h1>
-					<h6>
-				  	Posted on <?php echo $post->post_date;?>
-					</h6>
+				<h1>
+				  	<a href="<?php echo "/post/view/" . $post->post_id; ?>"><?php echo $post->post_title;?></a>
+				  	<a href="<?php echo "/post/edit/" . $post->post_id; ?>" style="border:none;">
+				  	<span class="glyphicon glyphicon-edit"></span>
+				  	</a>
+				</h1>
+				<h5>Posted on <strong><?php echo $post->post_date;?></strong> | Author: <strong><?php echo $post->user_fullname;?></strong></h5>
 			  	<?php echo $post->post_content;?>
 			</div>
 		  <?php endforeach; else:?>

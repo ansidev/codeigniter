@@ -35,9 +35,9 @@ class Post extends CI_Controller {
 		// $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 		// $this->form_validation->set_rules('commentor', 'Comment', 'required');
 
-		if($this->post_model->get_post($id))
+		if($data['query'])
 		{
-			foreach($this->post_model->get_post($id) as $post)
+			foreach($data['query'] as $post)
 			{
 				$data['post'] = $post;
 			}

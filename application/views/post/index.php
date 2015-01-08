@@ -11,10 +11,7 @@
 				  	<span class="glyphicon glyphicon-edit"></span>
 				  	</a>
 				</h1>
-				<h6>
-			  	Posted on <?php echo $post->post_date;?>
-			  	<!-- | Author: <?php //echo $post->post_author;?> -->
-				</h6>
+				<h5>Posted on <strong><?php echo $post->post_date;?></strong> | Author: <strong><?php echo $post->user_fullname;?></strong></h5>
 			  	<?php echo $post->post_content;?>
 			</div>
 		  <?php endforeach; else:?>
@@ -23,7 +20,7 @@
 			  </div>
 		  <?php endif;?>
 	  	</div><!-- /row -->
-      <?php $this->load->view('layout/footer'); ?>
+      <?php $this->load->view('layout/footer');?>
     </div> <!-- /container -->
     <!-- Bootstrap core JavaScript
     ================================================== -->

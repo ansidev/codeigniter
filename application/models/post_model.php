@@ -10,6 +10,8 @@ class Post_model extends CI_Model
 
 	function get_all_posts()
 	{
+		$this->db->select('posts.post_id, posts.post_title, posts.post_content, posts.post_date, posts.post_date, users.user_fullname');
+		$this->db->join('users', 'posts.post_author_id = users.user_id');
 		$query = $this->db->get('posts');
 		return $query->result();
 	}
@@ -18,8 +20,12 @@ class Post_model extends CI_Model
 	{
 		if(!empty($id))
 		{
+			$this->db->select('posts.post_id, posts.post_title, posts.post_content, posts.post_date, posts.post_date, users.user_fullname');
+			$this->db->join('users', 'posts.post_author_id = users.user_id');
 			$this->db->where('post_id', $id);
+			$this->db->limit(1);
 			$query = $this->db->get('posts');
+			// $query = $this->db->query('SELECT * FROM `posts` JOIN users WHERE posts.post_author_id = users.user_id');
 			if($query->num_rows() !== 0)
 			{
 				return $query->result();
@@ -34,6 +40,7 @@ class Post_model extends CI_Model
 		{
 			$this->db->where('user_id', $id);
 			$query = $this->db->get('users');
+			return $query->result();
 		}
 		return FALSE;
 	}
