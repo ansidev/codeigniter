@@ -2,14 +2,22 @@
   <body>
     <?php $this->load->view('layout/top-nav'); ?>
     <div class="container">
-    	<div class="row">
+        <?php if($this->session->flashdata('message')):?>
+            <div class="alert alert-success" role="alert">
+                <?php echo $this->session->flashdata('message');?>
+            </div>
+        <?php endif;?>
+        <div class="row">
 	  	<?php if($query):foreach($query as $post):?>
 	  		<div class="col-md-12">
 				<h1>
 				  	<a href="<?php echo "/post/view/" . $post->post_id; ?>"><?php echo $post->post_title;?></a>
-				  	<a href="<?php echo "/post/edit/" . $post->post_id; ?>" style="border:none;">
-				  	<span class="glyphicon glyphicon-edit"></span>
-				  	</a>
+                    <a href="<?php echo "/post/edit/" . $post->post_id; ?>" style="border:none;">
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </a>
+				  	<a style="border:none;" onclick="javascript:deleteConfirm('<?php echo base_url()."post/delete/".$post->post_id;?>');" deleteConfirm href="#">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
 				</h1>
 				<h5>Posted on <strong><?php echo $post->post_date;?></strong> | Author: <strong><?php echo $post->user_fullname;?></strong></h5>
 			  	<?php echo $post->post_content;?>
@@ -25,7 +33,13 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="/assets/js/bootstrap.min.js"></script>
-  </body>
-</html>
+    <script type="text/javascript"> 
+    function deleteConfirm(url)
+    {
+        if(confirm('Do you want to delete this post?'))
+        {
+            window.location.href=url;
+        }
+    }
+    </script>
+    <?php $this->load->view('layout/foot');?>

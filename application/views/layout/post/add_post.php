@@ -11,11 +11,6 @@
             </div>
             <div class="panel-body">
                 <?php
-                    echo validation_errors();
-                    if($this->session->flashdata('message'))
-                    {
-                        echo $this->session->flashdata('message');
-                    }
                     echo form_open('post/add');
                 ?>
                     <div class="form-group">

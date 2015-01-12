@@ -37,11 +37,6 @@ class Post extends CI_Controller {
 
 		if($data['query'])
 		{
-			foreach($data['query'] as $post)
-			{
-				$data['post'] = $post;
-			}
-
 			// if($this->form_validation->run() == FALSE)
 			// {
 				$this->load->view('post/view', $data);
@@ -58,8 +53,8 @@ class Post extends CI_Controller {
 		$this->load->library(array('form_validation', 'session'));
 
 		//Set validation rules
-		$this->form_validation->set_rules('post_title', 'Post title', 'required|xss_clean|min_length[5]|max_length[200]');
-		$this->form_validation->set_rules('post_content', 'Post content', 'required|xss_clean|min_length[5]');
+		$this->form_validation->set_rules('post_title', 'Post title', 'required|xss_clean|min_length[1]|max_length[200]');
+		$this->form_validation->set_rules('post_content', 'Post content', 'required|xss_clean|min_length[1]');
 
 		if($id == null)
 		{
@@ -89,6 +84,7 @@ class Post extends CI_Controller {
 					$content = $this->input->post('post_content');					
 					$this->post_model->update($id, $title, $content);
 					$this->session->set_flashdata('message', 'Post has been updated!');
+					// redirect('post/edit/' . $id);
 					redirect('post/index');
 				}
 			}		
@@ -100,8 +96,8 @@ class Post extends CI_Controller {
 		$this->load->library(array('form_validation', 'session'));
 
 		//Set validation rules
-		$this->form_validation->set_rules('post_title', 'Post title', 'required|xss_clean|min_length[5]|max_length[200]');
-		$this->form_validation->set_rules('post_content', 'Post content', 'required|xss_clean|min_length[5]');
+		$this->form_validation->set_rules('post_title', 'Post title', 'required|xss_clean|min_length[1]|max_length[200]');
+		$this->form_validation->set_rules('post_content', 'Post content', 'required|xss_clean|min_length[1]');
 
 		if($this->form_validation->run() == FALSE)
 		{
@@ -112,9 +108,17 @@ class Post extends CI_Controller {
 			$title = $this->input->post('post_title');
 			$content = $this->input->post('post_content');
 			$this->post_model->add($title, $content);
-			$this->session->set_flashdata('message', '1 new post added!');
-			redirect('post/add');
+			$this->session->set_flashdata('message', 'New post has been added!');
+			// $this->load->view('post/index');
+			redirect('post/index');
 		}
+	}
+
+	function delete($id) {
+		$this->post_model->delete($id);
+		$this->session->set_flashdata('message', 'Post has been deleted!');
+		redirect('post/index');			
+		// $this->load->view('post/index');
 	}
 }
 

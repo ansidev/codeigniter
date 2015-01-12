@@ -10,14 +10,7 @@
                 </h3>
             </div>
             <div class="panel-body">
-                <?php
-                    echo validation_errors();
-                    if($this->session->flashdata('message'))
-                    {
-                        echo $this->session->flashdata('message');
-                    }
-                    echo form_open('post/edit/' . $post->post_id);
-                ?>
+                <?php echo form_open('post/edit/' . $post->post_id);?>
                     <input type="hidden" id="post_id" name="post_id" value="<?php echo $post->post_id; ?>">
                     <div class="form-group">
                         <label for="post_title">Title</label>
