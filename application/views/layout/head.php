@@ -19,7 +19,7 @@
   <style type="text/css">
     /* Move down content because we have a fixed navbar that is 50px tall */
     body {
-      padding-top: 50px;
+      padding-top: 70px;
       padding-bottom: 20px;
     }
   </style>

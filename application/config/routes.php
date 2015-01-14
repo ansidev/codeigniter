@@ -43,6 +43,7 @@ $route['404_override'] = '404';
 $route['about'] = 'post/about';
 $route['new-post'] = 'post/add';
 $route['post/(:num)'] = 'post/view/$1';
+$route['404_override'] = 'errors/page_missing';
 
 
 /* End of file routes.php */

@@ -50,7 +50,7 @@ class Post_model extends CI_Model
 		$data = array(
 			'post_title' => $title,
 			'post_content' => $content,
-			//Can edit trong cac lan cap nhat tiep theo
+			// TODO: Can edit trong cac lan cap nhat tiep theo
 			'post_author_id' => 1
 		);
 		$this->db->insert('posts', $data);
