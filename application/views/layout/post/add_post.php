@@ -10,26 +10,21 @@
                 </h3>
             </div>
             <div class="panel-body">
-                <?php
-                    echo form_open('post/add');
-                ?>
-                    <div class="form-group">
-                        <label for="post_title">Title</label>
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
-                            <input type="text" class="form-control" id="post_title" name="post_title" placeholder="Enter post title">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="post_content">Post content</label>
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <textarea class="form-control" id="post_content" name="post_content" placeholder="Enter post content" rows="8"></textarea>
-                        </div>
-                    </div>
+                <?php echo form_open('post/add');?>
+                    <?php echo $this->load->view('element/post-form');?>
                     <button type="submit" class="btn btn-sm btn-default">Add post</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(function() {                                      
+        if(CKEDITOR.instances['post_content']) {                     
+            CKEDITOR.remove(CKEDITOR.instances['post_content']);
+        }
+        CKEDITOR.config.width = 716;
+        CKEDITOR.config.height = 150;
+        CKEDITOR.replace('post_content',{});
+    })
+</script>

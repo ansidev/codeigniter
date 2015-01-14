@@ -12,23 +12,20 @@
             <div class="panel-body">
                 <?php echo form_open('post/edit/' . $post->post_id);?>
                     <input type="hidden" id="post_id" name="post_id" value="<?php echo $post->post_id; ?>">
-                    <div class="form-group">
-                        <label for="post_title">Title</label>
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
-                            <input type="text" class="form-control" id="post_title" name="post_title" placeholder="Enter post title" value="<?php echo $post->post_title; ?>">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="post_content">Post content</label>
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <textarea class="form-control" id="post_content" name="post_content" placeholder="Enter post content" rows="8"><?php echo $post->post_content; ?></textarea>
-                        </div>
-                    </div>
+                    <?php echo $this->load->view('element/post-form', $query[0]);?>
                     <button type="submit" class="btn btn-sm btn-default">Save changes</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(function() {                                      
+        if(CKEDITOR.instances['post_content']) {                     
+            CKEDITOR.remove(CKEDITOR.instances['post_content']);
+        }
+        CKEDITOR.config.width = 716;
+        CKEDITOR.config.height = 150;
+        CKEDITOR.replace('post_content',{});
+    })
+</script>
