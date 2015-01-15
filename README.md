@@ -1,3 +1,3 @@
-A blog using CodeIgniter Framework
-All about my projects, my products.
+A blog built with CodeIgniter Framework
+All about my projects, my products
 
